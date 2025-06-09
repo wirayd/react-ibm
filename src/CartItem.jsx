@@ -3,9 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+import './Modal.css'; // Assuming you have a CSS file for styling
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
+  const [showModal, setShowModal] = useState(false);
+
   const dispatch = useDispatch();
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -46,6 +49,7 @@ const CartItem = ({ onContinueShopping }) => {
     } else {
       // If quantity is 1, remove the item from the cart
       dispatch(removeItem(item.name));
+
     }
     // Update the cart state with the new quantity or remove the item
     // This will trigger a re-render and update the total cost accordingly
@@ -91,8 +95,17 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={() => setShowModal(true)}>Checkout</button>
       </div>
+      {showModal && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h2>Information</h2>
+            <p>Coming Soon</p>
+            <button onClick={() => setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
