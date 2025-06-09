@@ -32,12 +32,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-    console.log(e);
-
-    const navigate = useNavigate();
-    return(
-      navigate('/ProductList')
-    )
+    onContinueShopping(e);
 
 
 
