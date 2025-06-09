@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
+import { useNavigate } from 'react-router-dom';
+import { ProductList } from './ProductList'; // Assuming you have a ProductList component
 import './CartItem.css';
 import './Modal.css'; // Assuming you have a CSS file for styling
 
@@ -30,7 +32,16 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-   
+    console.log(e);
+
+    const navigate = useNavigate();
+    return(
+      navigate('/ProductList')
+    )
+
+
+
+    
   };
 
 
